@@ -2,10 +2,13 @@ import numpy as np
 import pandas as pd
 
 from pyspark.sql import SparkSession
-from pyspark.sql import SparkDataFrame
+from pyspark.sql import DataFrame as SparkDataFrame
 from typing import Union
 
-from data_visualization import DataVisualizationAbstract
+import sys
+sys.path.insert(0, "C:\\Users\\EHNIY\\OneDrive - Bayer (1)\\Learning\\probability_and_statistics_python")
+
+from src.code.data_visualization import DataVisualizationAbstract
 
 
 class OneWayTable(DataVisualizationAbstract):
@@ -16,7 +19,11 @@ class OneWayTable(DataVisualizationAbstract):
         DataVisualizationAbstract (_type_): _description_
     """
 
-    def transform(self, df: Union[pd.DataFrame, SparkDataFrame], colname: str, sortIndex: bool = True):
+    def __init__(self, colname: str, sortIndex: bool = True) -> None:
+        self.col_val = colname
+        self.sortval = sortIndex
+
+    def _transform(self, df: Union[pd.DataFrame, SparkDataFrame]):
         """
 
 
@@ -27,14 +34,14 @@ class OneWayTable(DataVisualizationAbstract):
         """
 
         if isinstance(df, pd.DataFrame):
-            if sortIndex:
-                return pd.crosstab(index=df[colname], columns='Count')
+            if self.sortval:
+                return pd.crosstab(index=df[self.col_val], columns='Count')
             else:
-                return df[colname].value_counts(sort=False)
+                return df[self.col_val].value_counts(sort=False)
 
         if isinstance(df, SparkDataFrame):
-            if sortIndex:
-                saprk_df = df.withColumn(colname, df[colname].cast('int'))
-                return saprk_df.groupBy(colname).count().orderBy(colname)
+            if self.sortval:
+                df = df.withColumn(self.col_val, df[self.col_val].cast('int'))
+                return df.groupBy(self.col_val).count().orderBy(self.col_val)
             else:
-                return saprk_df.groupBy(colname).count()
+                return df.groupBy(self.col_val).count()

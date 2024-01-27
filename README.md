@@ -12,3 +12,8 @@ This repository is intended to implement all possible ways of using probability 
 7. AutoViz
 8. Numerizer
 9. ppscore
+
+# libraries to expertise
+pandas
+pyspark
+

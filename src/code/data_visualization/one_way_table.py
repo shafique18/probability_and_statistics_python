@@ -1,12 +1,12 @@
+import sys
+sys.path.insert(0, "C:\\Users\\EHNIY\\OneDrive - Bayer (1)\\Learning\\probability_and_statistics_python")
+
 import numpy as np
 import pandas as pd
 
 from pyspark.sql import SparkSession
 from pyspark.sql import DataFrame as SparkDataFrame
 from typing import Union
-
-import sys
-sys.path.insert(0, "C:\\Users\\EHNIY\\OneDrive - Bayer (1)\\Learning\\probability_and_statistics_python")
 
 from src.code.data_visualization import DataVisualizationAbstract
 

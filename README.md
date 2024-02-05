@@ -19,3 +19,5 @@ pandas
 matplotlib
 seaborn
 pyspark
+
+# Azure data bricks pipleline

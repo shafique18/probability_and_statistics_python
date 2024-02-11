@@ -20,6 +20,7 @@ matplotlib
 seaborn
 pyspark
 
-# Azure data bricks pipleline
-catalouge
+# Azure data bricks pipeline
+catalog
 import issue
+spark

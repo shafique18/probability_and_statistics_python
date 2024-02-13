@@ -21,6 +21,7 @@ seaborn
 pyspark
 
 # Azure data bricks pipeline
+pricing
 catalog
 import issue
 spark
